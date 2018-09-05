@@ -1,0 +1,9 @@
+*.pyc
+.*.swp
+.swp
+*.retry
+.DS_Store
+build
+*.zip
+signage
+env
