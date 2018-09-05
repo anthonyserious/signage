@@ -15,8 +15,14 @@ There will be a config.yml file containing, at a minimum:
 - Path to hash store directory where hash sequences will be stored per namespace.  In the future, this structure should support partitioning, with hashing performed in `goroutines` or even distributed.
 
 ### Stores
-Data stores are required for a) server's private key, b) namespaces' publis keys, and c) hash logs.
+Data stores are required for a) server's private key, b) namespaces' public keys, and c) hash logs.  Hash logs could alternatively go into sqlite or even a database server.
 
 ### Routes
 - /sign (POST) - sign and hash even.  Store and return the new hash.
   - `{ "namespace": "ticketBooking", "message": "Martha gets 1 round trip ticket to Aruba", "previousHash": "base64-encoded sha256 hash" }`
+
+### Organization
+- main.go - HTTP routing
+- sign.go - routines for loading RSA keys, signing, and hashing
+- store.go - routines for storing sequential hash log
+- config.go - load configs from `config.yml`
